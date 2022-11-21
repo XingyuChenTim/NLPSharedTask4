@@ -20,34 +20,10 @@ The annotated corpus in tab-separated value format. Future versions of this data
 - `level1-labels-training.tsv`: The same as `labels-training.tsv` but for the 54 level 1 values of the taxonomy (used in human annotation). Though not used for the 2023 task (except for the annotation), participants can still use them in their approaches.
 
 
-## Value Taxonomy
-The `value-categories.json` describes the 20 value categories of this task through examples. Format:
-```
-{
-  "<value category>": {
-    "<level 1 value>": [
-      "<exemplary effect a corresponding argument might target>",
-      ...
-    ], ...
-  }, ...
-}
-```
-The level 1 values are not used for the 2023 task (except for the annotation), but are still listed here for some might find them useful for understanding the value categories. See our paper on [Identifying the Human Values behind Arguments](https://webis.de/publications.html#kiesel_2022b) for the complete taxonomy.
-
-
 ## Email Update
 for SemEval we decided to focus on the 20 value categories.
 This task will use https://www.tira.io/ for submissions  
 In short: you will be able to either submit a run file or a Docker container that runs your system.  
-
-
-## Version History
-- 2022-07-11
-  - Exchanged the values.json from original dataset with task-specific value-categories.json
-
-- 2022-07-09
-  - Initial
-
 
 ## License
 This dataset is distributed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
