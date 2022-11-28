@@ -2,6 +2,7 @@
 # Python
 ######################
 __pycache__
+.ipynb_checkpoints
 
 ######################
 # IntelliJ
@@ -17,8 +18,4 @@ __pycache__
 ######################
 # Project Specific
 ######################
-/models
-/models.zip
-/webis-argvalues-22
-/webis-argvalues-22.zip
 /predictions.tsv
