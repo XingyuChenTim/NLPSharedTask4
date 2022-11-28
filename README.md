@@ -17,8 +17,6 @@ The annotated corpus in tab-separated value format. Future versions of this data
 - `labels-training.tsv`: Each row corresponds to one argument
     - `Argument ID`: The unique identifier for the argument
     - Other: Each other column corresponds to one value category, with a 1 meaning that the argument resorts to the value category and a 0 that not
-- `level1-labels-training.tsv`: The same as `labels-training.tsv` but for the 54 level 1 values of the taxonomy (used in human annotation). Though not used for the 2023 task (except for the annotation), participants can still use them in their approaches.
-
 
 ## Email Update
 for SemEval we decided to focus on the 20 value categories.
@@ -28,24 +26,11 @@ In short: you will be able to either submit a run file or a Docker container tha
 ## License
 This dataset is distributed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
-
-# acl22-identifying-the-human-values-behind-arguments
-[![license](https://img.shields.io/github/license/webis-de/acl22-identifying-the-human-values-behind-arguments)](https://github.com/webis-de/acl22-identifying-the-human-values-behind-arguments/blob/main/LICENSE)
-
-Code and docker containers employed in the ACL'22 publication "[Identifying the Human Values behind Arguments](https://webis.de/publications.html#kiesel_2022b)". Use this repository to reproduce the experiments of the paper or apply the classifiers to new data.
-
-
 ## Setup
 Requirements:
 - [Docker](https://docs.docker.com/engine/installation/) for training/using the classifier
 - [CUDA](https://developer.nvidia.com/cuda-downloads) and [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) for GPU support
 - [R](https://cran.r-project.org/) for evaluation
-
-Download the dataset from [Zenodo](https://doi.org/10.5281/zenodo.5657250) and extract it in the main directory:
-```bash
-$ wget https://zenodo.org/record/6855004/files/webis-argvalues-22.zip
-$ unzip webis-argvalues-22.zip
-```
 
 Download the models:
 ```bash
@@ -67,7 +52,7 @@ docker run --rm -it --init $GPUS \
   --volume "$PWD/models:/models" \
   --volume "$PWD:/output" \
   ghcr.io/webis-de/acl22-value-classification:$TAG \
-  python predict.py --classifier bos --levels "1,2,3,4a,4b"
+  python predict.py --classifier bos --levels "2"
 ```
 
 
@@ -92,7 +77,7 @@ docker run --rm -it --init $GPUS \
   --volume "$PWD/webis-argvalues-22:/data" \
   --volume "$PWD/models:/models" \
   ghcr.io/webis-de/acl22-value-classification:$TAG \
-  python training.py --classifier bs --levels "1,2,3,4a,4b"
+  python training.py --classifier bs --levels "2"
 ```
 
 
