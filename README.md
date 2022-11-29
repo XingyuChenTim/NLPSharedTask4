@@ -41,14 +41,14 @@ Or [train them yourself](#train-classification-models).
 
 
 ## Predict
-Prediction on all arguments from `webis-argvalues-22/arguments.tsv` with `test` in the `Usage` column, or all arguments if no such column exists.
+Prediction on all arguments from `data/arguments-training.tsv`
 ```bash
 TAG=0.1.1-nocuda # or 'TAG=0.1.1-cuda11.3' if a GPU is available
 GPUS="" # or 'GPUS="--gpus=all"' to use all GPUs
 
 # Select classifiers with --classifier: "b" for BERT, "o" for one-baseline, and "s" for SVM
 docker run --rm -it --init $GPUS \
-  --volume "$PWD/webis-argvalues-22:/data" \
+  --volume "$PWD/data:/data" \
   --volume "$PWD/models:/models" \
   --volume "$PWD:/output" \
   ghcr.io/webis-de/acl22-value-classification:$TAG \
@@ -59,14 +59,14 @@ docker run --rm -it --init $GPUS \
 ## Evaluate
 Calculate for each model the label-wise and mean _Precision_, _Recall_, _F1-Score_, and _Accuracy_.
 ```bash
-$ Rscript src/R/Evaluation.R --data-dir webis-argvalues-22/ --predictions predictions.tsv
+$ Rscript src/R/Evaluation.R --data-dir data/ --predictions predictions.tsv
 ```
 
 Note that the result does vary for BERT after re-training due to randomness in the training process. We had to re-train our models after the publication, so expect to get slightly different results to the publication even with the models we published. In our retries, however, the conclusions we draw in the publication were still valid.
 
 
 ## Train Classification Models
-Training on all arguments from `webis-argvalues-22/arguments.tsv` with `train` in the `Usage` column, or all arguments if no such column exists.
+Training on all arguments from `data/arguments-traing.tsv`
 ```bash
 mkdir models
 TAG=0.1.1-nocuda # or 'TAG=0.1.1-cuda11.3' if a GPU is available
@@ -74,7 +74,7 @@ GPUS="" # or 'GPUS="--gpus=all"' to use all GPUs
 
 # Select classifiers with --classifier: "b" for BERT and "s" for SVM
 docker run --rm -it --init $GPUS \
-  --volume "$PWD/webis-argvalues-22:/data" \
+  --volume "$PWD/data:/data" \
   --volume "$PWD/models:/models" \
   ghcr.io/webis-de/acl22-value-classification:$TAG \
   python training.py --classifier bs --levels "2"

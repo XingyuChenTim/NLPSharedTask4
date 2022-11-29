@@ -1,5 +1,5 @@
-library(rlang)
 options(warn=-1)
+library(rlang)
 ##### User Interface #####
 
 args <- commandArgs(trailingOnly=TRUE)
