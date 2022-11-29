@@ -64,14 +64,14 @@ def main(argv):
         print('The specified data directory "%s" does not exist' % data_dir)
         sys.exit(2)
 
-    argument_filepath = os.path.join(data_dir, 'arguments.tsv')
-    values_filepath = os.path.join(data_dir, 'values.json')
+    argument_filepath = os.path.join(data_dir, 'arguments-training.tsv')
+    values_filepath = os.path.join(data_dir, 'value-categories.json')
 
     if not os.path.isfile(argument_filepath):
-        print('The required file "arguments.tsv" is not present in the data directory')
+        print('The required file "arguments-training.tsv" is not present in the data directory')
         sys.exit(2)
     if not os.path.isfile(values_filepath):
-        print('The required file "values.json" is not present in the data directory')
+        print('The required file "value-categories.json" is not present in the data directory')
         sys.exit(2)
 
     # load arguments
