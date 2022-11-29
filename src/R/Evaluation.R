@@ -1,5 +1,5 @@
 library(rlang)
-
+options(warn=-1)
 ##### User Interface #####
 
 args <- commandArgs(trailingOnly=TRUE)
@@ -24,7 +24,7 @@ help_text <- paste(
 exit <- function() { invokeRestart("abort") }
 
 # default values
-data_dir <- file.path('./webis-argvalues-22/')
+data_dir <- file.path('./data')
 prediction_filepath <- file.path('./predictions.tsv')
 absent_labels <- FALSE
 
@@ -54,12 +54,12 @@ while (i <= length(args)) {
   i <- i + 1
 }
 
-arguments_filepath <- file.path(data_dir, 'arguments.tsv')
+arguments_filepath <- file.path(data_dir, 'arguments-training.tsv')
 if (!file.exists(prediction_filepath)) {
   stop("The specified prediction file does not exist.", call. = FALSE)
 }
 
-levels <- c("1", "2", "3", "4a", "4b")
+levels <- c("2")
 
 ##########################
 
@@ -95,7 +95,7 @@ actual.levels <- c()
 
 data.labels.all <- list()
 for (i in 1:length(levels)) {
-  label.file.path <- file.path(data_dir, paste('labels-level', levels[i], '.tsv', sep = ''))
+  label.file.path <- file.path(data_dir, paste('labels-training.tsv', sep = ''))
   if (file.exists(label.file.path)) {
     read_labels <- read.csv(label.file.path, sep = '\t', stringsAsFactors = FALSE)
     read_labels <- read_labels[read_labels$Argument.ID %in% data.arguments.filtered$Argument.ID,]
@@ -146,13 +146,13 @@ if (!absent_labels) {
   for (i in 1:length(datasetNames)) {
     absent.labels <- c()
     for (j in 1:length(levels)) {
-      
+
       active.labels <- data.labels.all[[levels[j]]]
       active.labels <- active.labels[active.labels$Argument.ID %in% (
         data.predictions[data.predictions$dataset == datasetNames[i],"Argument.ID"]
         ),]
       active.labels$Argument.ID <- NULL
-      
+
       cSums <- colSums(active.labels)
       absent.labels <- c(absent.labels, names(cSums)[which(cSums == 0)])
     }
@@ -182,7 +182,7 @@ for (i in 1:length(levels)) {
         dataPred <- dataPred[,names(dataPred) %notin% absent.label.list[[active.dataset]]]
       }
       dataResult <- evaluate(dataPred, data.labels, names(data.methods)[j], active.dataset, levels[i])
-      
+
       data.evaluation <- rbind(data.evaluation, dataResult)
     }
   }
@@ -194,9 +194,6 @@ for (i in 1:length(levels)) {
 ##### Visual formatting #####
 
 ## Special cases
-if (is.element("1", actual.levels)) {
-  data.evaluation$Label[data.evaluation$Label == "Be.self.disciplined"] <- "Be self-disciplined"
-}
 if (is.element("2", actual.levels)) {
   data.evaluation$Label[data.evaluation$Label == "Self.direction..thought"] <- "Self-direction: thought"
   data.evaluation$Label[data.evaluation$Label == "Self.direction..action"] <- "Self-direction: action"
@@ -212,14 +209,6 @@ if (is.element("2", actual.levels)) {
   data.evaluation$Label[data.evaluation$Label == "Universalism..nature"] <- "Universalism: nature"
   data.evaluation$Label[data.evaluation$Label == "Universalism..tolerance"] <- "Universalism: tolerance"
   data.evaluation$Label[data.evaluation$Label == "Universalism..objectivity"] <- "Universalism: objectivity"
-}
-if (is.element("3", actual.levels)) {
-  data.evaluation$Label[data.evaluation$Label == "Self.enhancement"] <- "Self-enhancement"
-  data.evaluation$Label[data.evaluation$Label == "Self.transcendence"] <- "Self-transcendence"
-}
-if (is.element("4b", actual.levels)) {
-  data.evaluation$Label[data.evaluation$Label == "Growth..Anxiety.free"] <- "Growth, Anxiety-free"
-  data.evaluation$Label[data.evaluation$Label == "Self.protection..Anxiety.avoidance"] <- "Self-protection, Anxiety avoidance"
 }
 
 ## Revert spaces
@@ -250,6 +239,7 @@ if (has.methods) {
 
 
 ##### Output final evaluation #####
+data.evaluation = subset(data.evaluation, select = -c(Level))
 write.table(data.evaluation, stdout(), sep = '\t', row.names = F, quote = F, col.names = T)
 
 ###################################
