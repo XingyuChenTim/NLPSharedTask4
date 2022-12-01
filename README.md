@@ -6,6 +6,10 @@ Dataset for [Touché / SemEval 2023 Task 4; ValueEval: Identification of Human V
 
 The dataset currently contains 5220 arguments. We are, however, looking for more argument datasets (conclusion + stance + premise) to annotate and incorporate, especially datasets from different cultures and genres. Please send suggestions to our [task](mailto:valueeval@googlegroups.com) or [organizers](mailto:valueeval-organizers@googlegroups.com) mailing lists.
 
+For SemEval we decided to focus on the 20 value categories. This task will use https://www.tira.io/ for submissions  
+
+In short: you will be able to either submit a run file or a Docker container that runs your system.
+
 
 ## Argument Corpus
 The annotated corpus in tab-separated value format. Future versions of this dataset will contain more arguments and be split into "-training", "-validation", and "-testing" files to represent the corresponding sets for the evaluation.
@@ -18,10 +22,6 @@ The annotated corpus in tab-separated value format. Future versions of this data
     - `Argument ID`: The unique identifier for the argument
     - Other: Each other column corresponds to one value category, with a 1 meaning that the argument resorts to the value category and a 0 that not
 
-## Email Update
-for SemEval we decided to focus on the 20 value categories.
-This task will use https://www.tira.io/ for submissions  
-In short: you will be able to either submit a run file or a Docker container that runs your system.  
 
 ## License
 This dataset is distributed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
