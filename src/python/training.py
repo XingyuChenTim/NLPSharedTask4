@@ -27,7 +27,7 @@ def main(argv):
     run_bert = True
     run_svm = False
     data_dir = '/data/'
-    levels = ["1", "2", "3", "4a", "4b"]
+    levels = ["2"]
     model_dir = '/models/'
     validate = False
 
@@ -109,9 +109,9 @@ def main(argv):
     df_train_all = []
     df_valid_all = []
     for i in range(num_levels):
-        label_filepath = os.path.join(data_dir, 'labels-level{}.tsv'.format(levels[i]))
+        label_filepath = os.path.join(data_dir, 'labels-training.tsv')
         if not os.path.isfile(label_filepath):
-            print('The required file "labels-level{}.tsv" is not present in the data directory'.format(levels[i]))
+            print('The required file "labels-training.tsv" is not present in the data directory')
             sys.exit(2)
         # read labels from .tsv file
         df_labels = load_labels_from_tsv(label_filepath, values[levels[i]])
