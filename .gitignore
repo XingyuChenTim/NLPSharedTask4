@@ -2,18 +2,18 @@
 # Python
 ######################
 __pycache__
-.ipynb_checkpoints/
+**/.ipynb_checkpoints/
 
 ######################
 # IntelliJ
 ######################
-.idea/
-.DS_Store
+**/.idea/
+**/.DS_Store
 ######################
 # R
 ######################
-.RData
-.Rhistory
+**/.RData
+**/.Rhistory
 
 ######################
 # Project Specific
