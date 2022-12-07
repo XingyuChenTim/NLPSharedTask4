@@ -40,8 +40,8 @@ $ unzip models.zip
 Or [train them yourself](#train-classification-models).
 
 
-## Predict
-Prediction on all arguments from `data/arguments-training.tsv`
+## Predict/Train
+Prediction/Train on all arguments from `data/arguments-training.tsv`
 ```bash
 TAG=0.1.1-nocuda # or 'TAG=0.1.1-cuda11.3' if a GPU is available
 GPUS="" # or 'GPUS="--gpus=all"' to use all GPUs
@@ -52,7 +52,8 @@ docker run --rm -it --init $GPUS \
   --volume "$PWD/models:/models" \
   --volume "$PWD:/output" \
   ghcr.io/webis-de/acl22-value-classification:$TAG \
-  python predict.py --classifier bos --levels "2"
+  python predict.py --classifier bos --levels "2"  # for predict  or
+  python training.py --classifier bs --levels "2" # for training
 ```
 
 
@@ -63,23 +64,6 @@ $ Rscript src/R/Evaluation.R --data-dir data/ --predictions predictions.tsv
 ```
 
 Note that the result does vary for BERT after re-training due to randomness in the training process. We had to re-train our models after the publication, so expect to get slightly different results to the publication even with the models we published. In our retries, however, the conclusions we draw in the publication were still valid.
-
-
-## Train Classification Models
-Training on all arguments from `data/arguments-traing.tsv`
-```bash
-mkdir models
-TAG=0.1.1-nocuda # or 'TAG=0.1.1-cuda11.3' if a GPU is available
-GPUS="" # or 'GPUS="--gpus=all"' to use all GPUs
-
-# Select classifiers with --classifier: "b" for BERT and "s" for SVM
-docker run --rm -it --init $GPUS \
-  --volume "$PWD/data:/data" \
-  --volume "$PWD/models:/models" \
-  ghcr.io/webis-de/acl22-value-classification:$TAG \
-  python training.py --classifier bs --levels "2"
-```
-
 
 ## Build Docker Images
 The Docker images are hosted at `ghcr.io` and will be pulled automatically by `docker run`.
