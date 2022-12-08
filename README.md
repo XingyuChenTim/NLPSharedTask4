@@ -60,7 +60,7 @@ docker run --rm -it --init $GPUS \
 ## Evaluate
 Calculate for each model the label-wise and mean _Precision_, _Recall_, _F1-Score_, and _Accuracy_.
 ```bash
-$ Rscript src/R/Evaluation.R --data-dir data/ --predictions predictions.tsv
+Rscript src/R/Evaluation.R --data-dir data/ --predictions predictions.tsv
 ```
 
 Note that the result does vary for BERT after re-training due to randomness in the training process. We had to re-train our models after the publication, so expect to get slightly different results to the publication even with the models we published. In our retries, however, the conclusions we draw in the publication were still valid.

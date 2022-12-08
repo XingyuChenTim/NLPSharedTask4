@@ -27,7 +27,7 @@ def main(argv):
     run_bert = True
     run_svm = False
     data_dir = '/data/'
-    levels = ["2"]
+    levels = ["1", "2", "3", "4a", "4b"]
     model_dir = '/models/'
     validate = False
 
