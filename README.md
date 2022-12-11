@@ -1,7 +1,7 @@
 # Touché23-Human-Value-Detection
 Dataset: https://doi.org/10.5281/zenodo.6814563
 
-SharedTask Description: [Touché / SemEval 2023 Task 4; ValueEval: Identification of Human Values behind Arguments](https://touche.webis.de/semeval23/touche23-web). 
+SharedTask Description: [Task 4; ValueEval: Identification of Human Values behind Arguments](https://touche.webis.de/semeval23/touche23-web). 
 
 White Paper: [Identifying the Human Values behind Arguments](https://webis.de/publications.html#kiesel_2022b), published at ACL'22.
 
@@ -18,8 +18,6 @@ Download the models:
 $ wget https://zenodo.org/record/6855004/files/models.zip
 $ unzip models.zip
 ```
-Or [train them yourself](#train-classification-models).
-
 
 ## Predict/Train
 Prediction/Train on all arguments from `data/arguments-training.tsv`
@@ -43,8 +41,6 @@ Calculate for each model the label-wise and mean _Precision_, _Recall_, _F1-Scor
 ```bash
 Rscript src/R/Evaluation.R --data-dir data/ --predictions predictions.tsv
 ```
-
-Note that the result does vary for BERT after re-training due to randomness in the training process. We had to re-train our models after the publication, so expect to get slightly different results to the publication even with the models we published. In our retries, however, the conclusions we draw in the publication were still valid.
 
 ## Build Docker Images
 The Docker images are hosted at `ghcr.io` and will be pulled automatically by `docker run`.
