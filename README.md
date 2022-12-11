@@ -1,15 +1,11 @@
 # Touché23-Human-Value-Detection
-DOI: https://doi.org/10.5281/zenodo.6814563
-Version: 2022-07-11
+Dataset: https://doi.org/10.5281/zenodo.6814563
 
-Dataset for [Touché / SemEval 2023 Task 4; ValueEval: Identification of Human Values behind Arguments](https://touche.webis.de/semeval23/touche23-web). Based on the original [Webis-ArgValues-22 dataset](https://doi.org/10.5281/zenodo.5657249) accompanying the paper [Identifying the Human Values behind Arguments](https://webis.de/publications.html#kiesel_2022b), published at ACL'22.
+SharedTask Description: [Touché / SemEval 2023 Task 4; ValueEval: Identification of Human Values behind Arguments](https://touche.webis.de/semeval23/touche23-web). 
 
-The dataset currently contains 5220 arguments. We are, however, looking for more argument datasets (conclusion + stance + premise) to annotate and incorporate, especially datasets from different cultures and genres. Please send suggestions to our [task](mailto:valueeval@googlegroups.com) or [organizers](mailto:valueeval-organizers@googlegroups.com) mailing lists.
+White Paper: [Identifying the Human Values behind Arguments](https://webis.de/publications.html#kiesel_2022b), published at ACL'22.
 
-For SemEval we decided to focus on the 20 value categories. This task will use https://www.tira.io/ for submissions  
-
-In short: you will be able to either submit a run file or a Docker container that runs your system.
-
+Data Model: [Webis-ArgValues-22 dataset](https://doi.org/10.5281/zenodo.5657249)
 
 ## Argument Corpus
 The annotated corpus in tab-separated value format. Future versions of this dataset will contain more arguments and be split into "-training", "-validation", and "-testing" files to represent the corresponding sets for the evaluation.
