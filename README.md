@@ -7,17 +7,6 @@ White Paper: [Identifying the Human Values behind Arguments](https://webis.de/pu
 
 Data Model: [Webis-ArgValues-22 dataset](https://doi.org/10.5281/zenodo.5657249)
 
-## Argument Corpus
-The annotated corpus in tab-separated value format. Future versions of this dataset will contain more arguments and be split into "-training", "-validation", and "-testing" files to represent the corresponding sets for the evaluation.
-- `arguments-training.tsv`: Each row corresponds to one argument
-    - `Argument ID`: The unique identifier for the argument
-    - `Conclusion`: Conclusion text of the argument
-    - `Stance`: Stance of the `Premise` towards the `Conclusion`; one of "in favor of", "against"
-    - `Premise`: Premise text of the argument
-- `labels-training.tsv`: Each row corresponds to one argument
-    - `Argument ID`: The unique identifier for the argument
-    - Other: Each other column corresponds to one value category, with a 1 meaning that the argument resorts to the value category and a 0 that not
-
 ## Setup
 Requirements:
 - [Docker](https://docs.docker.com/engine/installation/) for training/using the classifier
