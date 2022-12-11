@@ -22,10 +22,6 @@ The annotated corpus in tab-separated value format. Future versions of this data
     - `Argument ID`: The unique identifier for the argument
     - Other: Each other column corresponds to one value category, with a 1 meaning that the argument resorts to the value category and a 0 that not
 
-
-## License
-This dataset is distributed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
-
 ## Setup
 Requirements:
 - [Docker](https://docs.docker.com/engine/installation/) for training/using the classifier
